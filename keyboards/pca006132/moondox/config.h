@@ -15,8 +15,6 @@
  */
 #pragma once
 
-#include "config_common.h"
-
 #define MATRIX_ROWS 10  // Rows are doubled-up
 #define MATRIX_COLS 7
 #define MASTER_LEFT

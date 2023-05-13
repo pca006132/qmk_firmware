@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdbool.h>
+#include <math.h>
 #include "ps2_mouse.h"
 #include "wait.h"
 #include "gpio.h"
@@ -199,16 +200,8 @@ static inline void ps2_mouse_convert_report_to_hid(report_mouse_t *mouse_report)
 #ifdef PS2_MOUSE_ROTATE
     int8_t x = mouse_report->x;
     int8_t y = mouse_report->y;
-#    if PS2_MOUSE_ROTATE == 90
-    mouse_report->x = y;
-    mouse_report->y = -x;
-#    elif PS2_MOUSE_ROTATE == 180
-    mouse_report->x = -x;
-    mouse_report->y = -y;
-#    elif PS2_MOUSE_ROTATE == 270
-    mouse_report->x = -y;
-    mouse_report->y = x;
-#    endif
+    mouse_report->x = cos(PS2_MOUSE_ROTATE * M_PI / 180.0) * x + sin(PS2_MOUSE_ROTATE * M_PI / 180.0) * y;
+    mouse_report->y = cos(PS2_MOUSE_ROTATE * M_PI / 180.0) * y - sin(PS2_MOUSE_ROTATE * M_PI / 180.0) * x;
 #endif
 }
 
