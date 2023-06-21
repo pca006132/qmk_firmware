@@ -29,6 +29,7 @@
 #define DEBOUNCE 3
 #define DEBOUNCE_TYPE = sym_eager_pk
 #define USB_POLLING_INTERVAL_MS 1
+#define USB_SUSPEND_WAKEUP_DELAY 200
 
 #define PS2_CLOCK_PIN A4
 #define PS2_DATA_PIN A3
